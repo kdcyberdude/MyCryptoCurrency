@@ -1,0 +1,31 @@
+{
+  "name": "kdstoken-sale",
+  "version": "1.0.0",
+  "description": "KDS Token Sale ICO",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "author": "Karandeep Singh",
+  "license": "ISC",
+  "github": "https://github.com/kdcyberdude",
+  "linkedin": "http://www.linkedin.com/in/kdcyberdude",
+  "devDependecies": {
+    "lite-server": "^3.5.2"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lite-server": "^2.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdcyberdude/MyCryptoCurrency.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kdcyberdude/MyCryptoCurrency/issues"
+  },
+  "homepage": "https://github.com/kdcyberdude/MyCryptoCurrency#readme"
+}
