@@ -16,7 +16,11 @@
   "devDependecies": {
     "lite-server": "^3.5.2"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@truffle/contract": "^4.3.5",
+    "truffle-contract": "^4.0.31",
+    "web3": "^1.3.3"
+  },
   "devDependencies": {
     "lite-server": "^2.5.3"
   },
