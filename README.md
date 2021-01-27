@@ -3,6 +3,7 @@
 Site: https://kdcyberdude.github.io/MyCryptoCurrency/
 <br/>
 <br/>
+
 # How It Works<br/>
 ## PROVISION TOKENS TO TOKEN SALE CONTRACT<br/>
 ## SET A TOKEN PRICE IN WEI<br/>
@@ -12,6 +13,7 @@ Site: https://kdcyberdude.github.io/MyCryptoCurrency/
 <br/>
 <br/>
 <br/>
+
 ## How to rebuild this...<br/>
 Install NodeJs<br/>
 npm install truffle -g // install truffle framework<br/>
@@ -24,5 +26,3 @@ Create MetaMask Account<br/>
 Run Ganache Software<br/>
 Connect to local server(ganache) from metamask - New RPC URL: http://127.0.0.1:7545, Chain ID: 1337<br/>
 Now you are good to go!!<br/>
-<br/>
-<br/>
