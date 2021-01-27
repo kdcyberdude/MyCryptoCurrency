@@ -4,7 +4,7 @@ Site: https://kdcyberdude.github.io/MyCryptoCurrency/
 <br/>
 <br/>
 
-![alt text](MyCrptoCurrenncyPreview.gif.gif)
+![alt text](MyCrptoCurrenncyPreview.gif)
 
 # How It Works<br/>
 ## PROVISION TOKENS TO TOKEN SALE CONTRACT<br/>
