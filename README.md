@@ -4,6 +4,8 @@ Site: https://kdcyberdude.github.io/MyCryptoCurrency/
 <br/>
 <br/>
 
+![alt text](MyCrptoCurrenncyPreview.gif.gif)
+
 # How It Works<br/>
 ## PROVISION TOKENS TO TOKEN SALE CONTRACT<br/>
 ## SET A TOKEN PRICE IN WEI<br/>
