@@ -66,11 +66,8 @@ contract("KDSToken",function(accounts){
       fromAccount = accounts[5];
       toAccount = accounts[6];
       spendingAccount = accounts[7];
-
       //Transfer some tokens to from accounts
       return tokenInstance.transfer(fromAccount, 100, { from: accounts[0] });
-
-
     }).then(function(receipt) {
       // Approve spendingAccount to spend 10 tokens form fromAccount
       return tokenInstance.approve(spendingAccount, 10, { from: fromAccount });

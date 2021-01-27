@@ -5,27 +5,29 @@ contract KDSToken {
   string public name = "KDSToken";
   string public symbol = "KD";
   string public standard = "KDSToken v1.0";
-  uint public totalSupply;
-  mapping (address => uint) public balanceOf;
-  mapping (address => mapping (address => uint)) public allowance;
+  uint256 public totalSupply;
+
   event Transfer(
     address indexed _from,
     address indexed _to,
-    uint _value
+    uint256 _value
   );
+
+  mapping (address => uint256) public balanceOf;
+  mapping (address => mapping (address => uint256)) public allowance;
 
   event Approval(
     address _owner,
     address _spender,
-    uint _value
+    uint256 _value
   );
 
-  constructor (uint _initialSupply) public {
+  constructor (uint256 _initialSupply) public {
     balanceOf[msg.sender] = _initialSupply;
     totalSupply = _initialSupply;
   }
   // transfer function
-  function transfer(address _to, uint _value) public returns (bool success) {
+  function transfer(address _to, uint256 _value) public returns (bool success) {
     require(balanceOf[msg.sender] >= _value);
     balanceOf[msg.sender] -= _value;
     balanceOf[_to] += _value;
@@ -34,7 +36,7 @@ contract KDSToken {
   }
 
   // Delegated transfer
-  function approve(address _spender, uint _value) public returns (bool success) {
+  function approve(address _spender, uint256 _value) public returns (bool success) {
     // _spender is get approval by msg.sender to spend _value tokens i.e KDSToken
 
     // allow _spender to withdraw from your accoutn multiple times, up to the _value amount.
@@ -44,7 +46,7 @@ contract KDSToken {
     return true;
   }
 
-  function transferFrom(address _from, address _to, uint _value) public returns (bool success) {
+  function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
     require(_value <= balanceOf[_from]);
     require(_value <= allowance[_from][msg.sender]);
 

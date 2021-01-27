@@ -85,8 +85,7 @@ App = {
         console.log('Please connect to MetaMask.');
       } else if (accounts[0] !== currentAccount) {
         currentAccount = accounts[0];
-        // Do any other work!
-
+        console.log('currentAccount Address:',currentAccount);
         App.web3Provider = ethereum;
         web3 = new Web3(ethereum);
         return App.initContracts();
@@ -177,18 +176,19 @@ App = {
       }).watch(function(error, event) {
         console.log("event triggered", event);
         App.render();
-
       });
+
     });
 
+    App.contracts.KDSToken.deployed().then(function(instance){
+      instance.Transfer({}, {
+        fromBlock:0,
+        toBlock: 'latest',
+      }).watch(function(error,event){
+        console.log('Transfer Event:\n',event);
+      })
+    })
 
-    // App.contracts.KDSTokenSale.events.EventName({
-    //     filter: {myIndexedParam: [20,23]},
-    //     fromBlock: 0,
-    //     toBlock: 'latest'
-    // }).on('data', function(event) {
-    //     console.log(event.returnValues);
-    // }).on('error', console.error);
   },
 
   render: function() {
@@ -220,6 +220,8 @@ App = {
         Here i am getting an array i.e tokenPrice is instance of map of lenght 1 and value of zero
         I did not understand why it is happening, therfore I am hard coding the codition to overcome this
         TODO: Resolve this error in future
+
+        Now I do understand this ... but I'll solve this later :/
       */
 
       if (tokenPrice instanceof Object){
@@ -246,6 +248,21 @@ App = {
         kdsTokenInstance = instance;
         return kdsTokenInstance.balanceOf(App.account);
       }).then(function(balance) {
+        if (balance.e == 6){  // means million
+          //start the sale 
+         kdsTokenSaleInstance.totalTokensForSale().then(function(totalTokens){
+            console.log('total_tokens:',totalTokens);
+            kdsTokenInstance.transfer(
+              kdsTokenSaleInstance.address,
+               App.tokensAvailable, {from:App.account, gas:500000
+               }).then(function(res){
+              console.log('750000 tokens sent to KDSTokenSale contract:',res);
+            }).catch(function(e){
+              console.log('startSale error:',e);
+            });
+
+          });
+        }
         $('.kds-balance').html(balance.toNumber());
         App.loading = false;
         loader.hide();
@@ -269,6 +286,7 @@ App = {
       $('form').trigger('reset');
       // reset number of tokens in form
       // Wait for Sell event
+      console.log('Tokens sucessfully bought!!');
       App.render();
     }).catch(function(e){
       console.log('error', e);  

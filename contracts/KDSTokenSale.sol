@@ -5,20 +5,22 @@ import "./KDSToken.sol";
 contract KDSTokenSale {
   address payable admin;
   KDSToken public tokenContract;
-  uint public tokenPrice;
-  uint public tokensSold;
+  uint256 public tokenPrice;
+  uint256 public tokensSold;
+  uint256 public totalTokensForSale;
 
   modifier onlyAdmin() {
     require(msg.sender == admin);
     _;
   }
 
-  event Sell(address _buyer, uint _amount);
+  event Sell(address _buyer, uint256 _amount);
 
-  constructor(KDSToken _tokenContract, uint _tokenPrice) public {
+  constructor(KDSToken _tokenContract, uint256 _tokenPrice, uint256 _totalTokensForSale) public {
     admin = msg.sender;
     tokenContract = _tokenContract;
     tokenPrice = _tokenPrice;
+    totalTokensForSale = _totalTokensForSale;
   }
 
   // multiply--- internal means internal to the contract  and pure implies it does not deal with blockchain
@@ -28,23 +30,24 @@ contract KDSTokenSale {
   }
 
   // Buy Tokens
-  function buyTokens(uint _numberOfTokens) public payable{
+  function buyTokens(uint256 _numberOfTokens) public payable{
     // Require that value is equal to tokens
     require(msg.value == multiply(_numberOfTokens, tokenPrice));
     // Require that the contract has enough tokens
-    require(tokenContract.balanceOf(address(this)) >= _numberOfTokens);
+    require(tokenContract.balanceOf(msg.sender) >= _numberOfTokens);
     // buying functionality
     require(tokenContract.transfer(msg.sender, _numberOfTokens));
     // Keep track of tokensSold
-    tokensSold += _numberOfTokens;
+    tokensSold = tokensSold + _numberOfTokens;
     // Triger Sell Event
     emit Sell(msg.sender, _numberOfTokens);
+
   }
 
   function endSale() public onlyAdmin(){
-        require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this))));
+    require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this))));
 
-        admin.transfer(address(this).balance);
-        selfdestruct(admin);
-    }
+    admin.transfer(address(this).balance);
+    selfdestruct(admin);
+  }
 }
