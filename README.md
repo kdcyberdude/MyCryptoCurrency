@@ -13,8 +13,6 @@ Site: https://kdcyberdude.github.io/MyCryptoCurrency/
 ## BUY TOKENS<br/>
 ## END SALE<br/>
 <br/>
-<br/>
-<br/>
 
 ## How to rebuild this...<br/>
 Install NodeJs<br/>
